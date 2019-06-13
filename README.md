@@ -1,9 +1,9 @@
-#### Steps to run tests
+### Steps to run tests
 
-#####APK-debug version
+##### APK-debug version
 * using maven to add io.appium dependency in `pom.xml` ( latest version is recommended )
 
-#####Bundle version
+##### Bundle version
 * first download google bundletool-all from [here](https://github.com/KazuCocoa/AppBundleSample/blob/master/apks/bundletool-all-0.6.0.jar) and move it
 to apks folder **"if not exists"**
 * you should use your own key configurations [name,alias,password] and paste it on 
