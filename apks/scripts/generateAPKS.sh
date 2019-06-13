@@ -1,0 +1,1 @@
+java -jar apks/bundletool-all-0.6.0.jar build-apks --bundle apks/app.aab --output apks/AppBundleSamples.apks --ks apks/hello-world.keystore --ks-key-alias create-bundle-key --ks-pass pass:sample-password --overwrite

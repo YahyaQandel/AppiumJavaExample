@@ -1,0 +1,1 @@
+while [ ! -f apks/AppBundleSamples.apks ]; do sleep 1; done
