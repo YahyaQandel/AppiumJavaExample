@@ -19,8 +19,8 @@ public class HelloWorldBundle {
     @BeforeClass
     public static void createAPKS() throws IOException, InterruptedException {
 //      RUN ONLY FIRST TIME TO CREATE THE APKS FOR THE BUNDLE
-//        AndroidHelper.generateApksFromAAB();
-//        AndroidHelper.installAPKSonDevice();
+        AndroidHelper.generateApksFromAAB();
+        AndroidHelper.installAPKSonDevice();
     }
     @Before
     public void setUp() throws MalformedURLException {
