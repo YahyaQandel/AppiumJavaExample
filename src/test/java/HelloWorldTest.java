@@ -6,6 +6,7 @@ import io.appium.java_client.service.local.AppiumServerHasNotBeenStartedLocallyE
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
@@ -30,14 +31,17 @@ public class HelloWorldTest {
             throw new AppiumServerHasNotBeenStartedLocallyException(
                     "An appium server node is not started!");
         }
-//     @TODO use aab in appium
         DesiredCapabilities cap = new DesiredCapabilities();
 
         cap.setCapability("deviceName", "Nexus_5X");
         cap.setCapability("platformName", "Android");
-        cap.setCapability("app", "apks/app-debug.apk");
+//
+        cap.setCapability("appPackage", "com.google.android.dialer");
+        cap.setCapability("appActivity", "com.google.android.dialer.extensions.GoogleDialtactsActivity");
+        // Real device
+//         cap.setCapability("appPackage", "com.android.contacts");
+//         cap.setCapability("appActivity", "com.android.contacts.activities.DialtactsActivity");
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), cap);
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 
     }
 
@@ -60,11 +64,30 @@ public class HelloWorldTest {
         assertEquals(driver.findElement(MobileBy.id("textRendered")).getText(), "\uD83C\uDF55 \uD83C\uDF55");
     }
 
-//    @Test
-//    public void runCommand() throws IOException {
-//        AndroidHelper.generateApksFromAAB();
-//    }
+    @Test
+    public void openPhoneDialer(){
+        driver.findElement(By.id("key pad")).click();
+        driver.findElement(By.id("0,+")).click();
+        driver.findElement(By.id("1,")).click();
+        driver.findElement(By.id("0,+")).click();
+        driver.findElement(By.id("9,WXYZ")).click();
+        driver.findElement(By.id("0,+")).click();
+        driver.findElement(By.id("6,MNO")).click();
+        driver.findElement(By.id("1,")).click();
+        driver.findElement(By.id("4,GHI")).click();
+        driver.findElement(By.id("6,MNO")).click();
+        driver.findElement(By.id("3,DEF")).click();
+        driver.findElement(By.id("3,DEF")).click();
+        driver.findElement(By.id("dial")).click();
+//        driver.findElement(By.id("dial")).click();
+//        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
 
+//        driver.findElement(By.xpath("//android.widget.FrameLayout[@content-desc=\"0\"]/android.widget.RelativeLayout")).click();
+//        driver.findElement(By.id("dial")).click();
+
+
+
+    }
     @After
     public void tearDown() throws Exception {
         if (driver != null) {

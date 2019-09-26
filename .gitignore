@@ -4,3 +4,5 @@ target/*
 target/
 apks/bundletool-all-0.6.0.jar
 apks/AppBundleSamples.apks
+
+keytool -genkey -v -keystore mykeystore.keystore -alias mykeyalias -keyalg RSA -keysize 2048 -validity 10000
