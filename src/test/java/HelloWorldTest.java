@@ -24,16 +24,16 @@ public class HelloWorldTest {
 
     @Before
     public void setUp() throws MalformedURLException {
-        service = AppiumDriverLocalService.buildDefaultService();
-        service.start();
-
-        if (service == null || !service.isRunning()) {
-            throw new AppiumServerHasNotBeenStartedLocallyException(
-                    "An appium server node is not started!");
-        }
+//        service = AppiumDriverLocalService.buildDefaultService();
+//        service.start();
+//
+//        if (service == null || !service.isRunning()) {
+//            throw new AppiumServerHasNotBeenStartedLocallyException(
+//                    "An appium server node is not started!");
+//        }
         DesiredCapabilities cap = new DesiredCapabilities();
 
-        cap.setCapability("deviceName", "Nexus_5X");
+        cap.setCapability("deviceName", "Pixel_2_API_26");
         cap.setCapability("platformName", "Android");
 //
         cap.setCapability("appPackage", "com.google.android.dialer");
@@ -46,39 +46,34 @@ public class HelloWorldTest {
     }
 
     @Test
-    public void checkHeaderExists() {
-        driver.findElement(MobileBy.id("headerText"));
-    }
-
-    @Test
-    public void checkEditTextWithClassName() {
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        String editTextValue = driver.findElementByClassName("android.widget.EditText").getText();
-        assertEquals("Give me pizza!", editTextValue);
+    public void checkActionBarExists() {
+        driver.findElement(MobileBy.id("action_bar"));
     }
 
     @Test
     public void checkEnteredText() {
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        driver.findElement(MobileBy.id("textField")).sendKeys("Im hungry");
-        assertEquals(driver.findElement(MobileBy.id("textRendered")).getText(), "\uD83C\uDF55 \uD83C\uDF55");
+        driver.findElement(MobileBy.id("search_magnifying_glass")).click();
+        driver.findElement(MobileBy.id("search_view")).sendKeys("Im hungry");
+        String editTextValue = driver.findElementByClassName("android.widget.EditText").getText();
+        assertEquals("Im hungry", editTextValue);
     }
 
     @Test
     public void openPhoneDialer(){
-        driver.findElement(By.id("key pad")).click();
-        driver.findElement(By.id("0,+")).click();
-        driver.findElement(By.id("1,")).click();
-        driver.findElement(By.id("0,+")).click();
-        driver.findElement(By.id("9,WXYZ")).click();
-        driver.findElement(By.id("0,+")).click();
-        driver.findElement(By.id("6,MNO")).click();
-        driver.findElement(By.id("1,")).click();
-        driver.findElement(By.id("4,GHI")).click();
-        driver.findElement(By.id("6,MNO")).click();
-        driver.findElement(By.id("3,DEF")).click();
-        driver.findElement(By.id("3,DEF")).click();
-        driver.findElement(By.id("dial")).click();
+        driver.findElement(By.id("floating_action_button")).click();
+        driver.findElement(By.id("zero")).click();
+        driver.findElement(By.id("one")).click();
+        driver.findElement(By.id("zero")).click();
+        driver.findElement(By.id("nine")).click();
+        driver.findElement(By.id("zero")).click();
+        driver.findElement(By.id("six")).click();
+        driver.findElement(By.id("one")).click();
+        driver.findElement(By.id("four")).click();
+        driver.findElement(By.id("six")).click();
+        driver.findElement(By.id("three")).click();
+        driver.findElement(By.id("three")).click();
+        driver.findElement(By.id("dialpad_floating_action_button")).click();
 //        driver.findElement(By.id("dial")).click();
 //        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
 

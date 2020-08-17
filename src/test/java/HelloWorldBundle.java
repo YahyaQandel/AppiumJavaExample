@@ -24,15 +24,15 @@ public class HelloWorldBundle {
     }
     @Before
     public void setUp() throws MalformedURLException {
-        service = AppiumDriverLocalService.buildDefaultService();
-        service.start();
-
-        if (service == null || !service.isRunning()) {
-            throw new AppiumServerHasNotBeenStartedLocallyException(
-                    "An appium server node is not started!");
-        }
+//        service = AppiumDriverLocalService.buildDefaultService();
+//        service.start();
+//
+//        if (service == null || !service.isRunning()) {
+//            throw new AppiumServerHasNotBeenStartedLocallyException(
+//                    "An appium server node is not started!");
+//        }
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName", "Nexus_5X");
+        cap.setCapability("deviceName", "Pixel_2_API_26");
         cap.setCapability("platformName", "Android");
         cap.setCapability("appPackage", "com.helloworld");
         cap.setCapability("appActivity", "MainActivity");
@@ -42,7 +42,7 @@ public class HelloWorldBundle {
 
     @Test
     public void checkHeaderExists() {
-        driver.findElement(MobileBy.id("headerText"));
+        driver.findElementByAccessibilityId("headerText");
     }
 
     @After
